@@ -7,7 +7,6 @@ The Eremos Memory Logging System provides comprehensive tracking and querying ca
 - [Memory Architecture](#memory-architecture)
 - [API Endpoints](#api-endpoints)
 - [Agent Memory Details](#agent-memory-details)
-- [Usage Examples](#usage-examples)
 - [Memory Types](#memory-types)
 - [Performance Monitoring](#performance-monitoring)
 - [Troubleshooting](#troubleshooting)
@@ -376,48 +375,6 @@ success_rate: 100%
 avg_processing: 1.5ms
 ```
 
-## Usage Examples
-
-### Basic Agent State Query
-```bash
-# Get Theron's current state
-curl http://localhost:3000/agents/agent-000
-
-# Get all agents overview
-curl http://localhost:3000/agents/
-```
-
-### Memory Log Queries
-```bash
-# Get recent memory entries for Theron
-curl http://localhost:3000/agents/memory/agent-000?limit=10
-
-# Get error entries from last hour
-curl "http://localhost:3000/agents/memory/agent-000?type=error&startTime=2025-01-26T09:30:00Z"
-
-# Get comprehensive snapshot
-curl http://localhost:3000/agents/snapshot/agent-000
-```
-
-### Cross-Agent Analysis
-```bash
-# Search for errors across all agents
-curl "http://localhost:3000/agents/memory/search?type=error&limit=50"
-
-# Get recent activity across all agents
-curl "http://localhost:3000/agents/activity/recent?limit=30"
-
-# Get system-wide statistics
-curl http://localhost:3000/agents/memory/stats
-```
-
-### Filtering and Pagination
-```bash
-# Get signals from specific time range
-curl "http://localhost:3000/agents/memory/agent-harvester?type=signal_emitted&startTime=2025-01-26T00:00:00Z&endTime=2025-01-26T12:00:00Z"
-
-# Paginate through large result sets
-curl "http://localhost:3000/agents/memory/search?limit=100&offset=200"
 ```
 
 ## Performance Monitoring
@@ -502,15 +459,6 @@ curl http://localhost:3000/agents/snapshot/agent-observer | jq '.snapshot.statis
 ```bash
 # Check if API server is running
 curl http://localhost:3000/health
-
-# Verify agent registration
-curl http://localhost:3000/agents/ | jq '.data[].agentId'
-
-# Check recent system activity
-curl http://localhost:3000/agents/activity/recent?limit=1
-
-# Monitor memory usage
-curl http://localhost:3000/agents/memory/stats | jq '.data.memoryUsage'
 ```
 
 ### Performance Optimization

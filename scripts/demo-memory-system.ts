@@ -9,10 +9,10 @@ import {
   queryMemoryEntries 
 } from "../utils/memory-logger";
 
-console.log("🧠 Eremos Memory System Demonstration\n");
+console.log(" Eremos Memory System Demonstration\n");
 
 //Simulate events for different agents
-console.log("📡 Simulating Agent Activities...\n");
+console.log(" Simulating Agent Activities...\n");
 
 //Theron processing anomalies
 console.log("🔹 Theron - Processing Anomalies:");

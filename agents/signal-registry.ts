@@ -266,7 +266,8 @@ export const createStandardSignal = (
     throw new Error(`Unknown signal type: ${type}`);
   }
 
-  const glyph = getAgentGlyph(agentId);
+  const agentInfo = getAgentGlyph(agentId);
+  const glyph = agentInfo?.glyph || '?';
   
   return {
     agent: AGENT_GLYPHS[agentId]?.agentName || 'Unknown',

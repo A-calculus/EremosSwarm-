@@ -16,7 +16,11 @@
     "generate:agent": "ts-node scripts/generate-agent.ts",
     "generate:signal": "ts-node scripts/generate-signal.ts",
     "demo:registry": "ts-node scripts/demo-signal-registry.ts",
-    "demo:memory": "ts-node scripts/demo-memory-system.ts"
+    "demo:memory": "ts-node scripts/demo-memory-system.ts",
+    "demo:specialized": "ts-node scripts/demo-specialized-agents.ts",
+    "demo:metrics": "ts-node scripts/demo-metrics-system.ts",
+    "demo:streaming": "ts-node scripts/demo-streaming-client.ts",
+    "demo:signal-streaming": "ts-node scripts/demo-signal-streaming.ts"
   },
   "keywords": [
     "agent",

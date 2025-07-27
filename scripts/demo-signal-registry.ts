@@ -1,7 +1,4 @@
-/**
- * Signal Registry Demonstration
- * Shows how to use the centralized signal registry and enhanced signal utilities
- */
+//Signal Registry Demonstration: Shows how to use the centralized signal registry and enhanced signal utilities
 
 import { 
   SIGNAL_REGISTRY,
@@ -17,23 +14,23 @@ import { emitSignal } from '../utils/signal-emitter';
 console.log('🔗 Eremos Signal Registry Demonstration\n');
 
 // 1. Show all registered agents and their glyphs
-console.log('📋 Registered Agents:');
+console.log(' Registered Agents:');
 const agents = Object.values(AGENT_GLYPHS);
 agents.forEach(agent => {
   console.log(`   ${agent.glyph} ${agent.agentName} (${agent.agentId}) - ${agent.role}`);
 });
 
-console.log('\n🎯 Signal Types:');
+console.log('\n Signal Types:');
 const signalTypes = getAllSignalTypes();
 signalTypes.forEach(type => {
   const metadata = getSignalMetadata(type);
   console.log(`   ${metadata?.glyph} ${type} - ${metadata?.description} [${metadata?.priority}]`);
 });
 
-console.log('\n🧪 Testing Signal Creation and Validation:\n');
+console.log('\n Testing Signal Creation and Validation:\n');
 
 // 2. Create valid signals for different agents
-console.log('✅ Creating valid signals:');
+console.log(' Creating valid signals:');
 
 // Example agent signal
 const exampleResult = emitSignal('template_log', 'agent-xxx', {
@@ -55,7 +52,7 @@ const launchResult = emitSignal('launch_detected', 'agent-launch', {
   }
 });
 
-console.log('\n❌ Testing invalid signal:');
+console.log('\n Testing invalid signal:');
 
 // Try to create an invalid signal (missing required fields)
 try {
@@ -72,7 +69,7 @@ try {
   console.log('   Error creating signal:', error instanceof Error ? error.message : 'Unknown error');
 }
 
-console.log('\n📊 Agent Statistics:');
+console.log('\n Agent Statistics:');
 
 // 3. Show statistics for each agent
 agents.forEach(agent => {
@@ -82,18 +79,5 @@ agents.forEach(agent => {
   console.log(`     Total Types: ${supportedSignals.length}`);
 });
 
-console.log('\n🔍 Signal Schema Examples:');
 
-// 4. Show schema for a complex signal type
-const launchMetadata = getSignalMetadata('launch_detected');
-if (launchMetadata) {
-  console.log(`\n   ${launchMetadata.glyph} ${launchMetadata.type} Schema:`);
-  console.log(`     Required: ${launchMetadata.schema.required.join(', ')}`);
-  console.log(`     Optional: ${launchMetadata.schema.optional.join(', ')}`);
-  console.log(`     Example:`, JSON.stringify(launchMetadata.schema.examples, null, 2));
-}
-
-console.log('\n✨ Registry demonstration complete!');
-console.log('   The signal registry provides standardized metadata,');
-console.log('   validation, and consistent signal structures across');
-console.log('   the entire Eremos agent ecosystem.'); 
+console.log('\n Registry demonstration complete!');

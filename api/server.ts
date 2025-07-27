@@ -6,6 +6,9 @@ import cors from 'cors';
 //Import endpoint modules
 import signalEndpoints from './signal-endpoints';
 import memoryEndpoints from './memory-endpoints';
+import metricsEndpoints from './metrics-endpoints';
+import metricsStreamingEndpoints from './metrics-streaming';
+import signalStreamingEndpoints from './signal-streaming';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +30,9 @@ app.get('/health', (req, res) => {
 //Mount endpoint modules
 app.use('/signals', signalEndpoints);
 app.use('/agents', memoryEndpoints);
+app.use('/metrics', metricsEndpoints);
+app.use('/stream/metrics', metricsStreamingEndpoints);
+app.use('/stream/signals', signalStreamingEndpoints);
 
 //404 handler
 app.use('*', (req, res) => {
@@ -37,7 +43,10 @@ app.use('*', (req, res) => {
     availableEndpoints: [
       'GET /health',
       'GET /signals/*',
-      'GET /agents/*'
+      'GET /agents/*',
+      'GET /metrics/*',
+      'GET /stream/metrics/*',
+      'GET /stream/signals/*'
     ]
   });
 });
@@ -55,11 +64,14 @@ app.use((error: Error, req: express.Request, res: express.Response, next: expres
 //Start server
 if (require.main === module) {
   app.listen(PORT, () => {
-    console.log(`🚀 Eremos API Server running on port ${PORT}`);
-    console.log(`📋 Available endpoint groups:`);
+    console.log(`   Eremos API Server running on port ${PORT}`);
+    console.log(`   Available endpoint groups:`);
     console.log(`   GET /health                    - Health check`);
     console.log(`   GET /signals/*                 - Signal registry endpoints`);
     console.log(`   GET /agents/*                  - Agent memory endpoints`);
+    console.log(`   GET /metrics/*                 - Agent performance metrics`);
+    console.log(`   GET /stream/metrics/*          - Real-time metrics streaming (SSE)`);
+    console.log(`   GET /stream/signals/*          - Real-time signal activity streaming (SSE)`);
   });
 }
 

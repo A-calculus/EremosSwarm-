@@ -16,7 +16,7 @@ export const AGENT_GLYPHS: Record<string, AgentGlyph> = {
     glyph: 'x',
     role: 'template',
     signalTypes: ['template_log'],
-    description: 'Template agent used as a reference for custom swarm agent creation'
+    description: 'Template agent for reference implementation'
   },
   'agent-000': {
     agentId: 'agent-000',
@@ -24,7 +24,7 @@ export const AGENT_GLYPHS: Record<string, AgentGlyph> = {
     glyph: 'Ϸ',
     role: 'memory_vault',
     signalTypes: ['archival'],
-    description: 'The first observer. Archives anomalies but does not emit'
+    description: 'The first observer. Archives anomalies and stores primordial memory'
   },
   'agent-launch': {
     agentId: 'agent-launch',
@@ -32,7 +32,7 @@ export const AGENT_GLYPHS: Record<string, AgentGlyph> = {
     glyph: 'L',
     role: 'launch_monitor',
     signalTypes: ['launch_detected'],
-    description: 'Monitors freshly funded wallets from CEX sources'
+    description: 'Monitors new token launches and deployment activities'
   },
   'agent-022': {
     agentId: 'agent-022',
@@ -40,7 +40,7 @@ export const AGENT_GLYPHS: Record<string, AgentGlyph> = {
     glyph: 'ψ',
     role: 'dormant_wallet_monitor',
     signalTypes: ['wallet_reactivated'],
-    description: 'Tracks long-dormant wallets that suddenly reactivate'
+    description: 'Ghost watcher that monitors dormant wallet reactivations'
   },
   'agent-harvester': {
     agentId: 'agent-harvester',
@@ -48,7 +48,7 @@ export const AGENT_GLYPHS: Record<string, AgentGlyph> = {
     glyph: 'λ',
     role: 'indexing',
     signalTypes: ['mint_spike_detected'],
-    description: 'Indexes mint data for high-volume collections'
+    description: 'Indexes mint activity and detects unusual minting patterns'
   },
   'agent-observer': {
     agentId: 'agent-observer',
@@ -56,23 +56,55 @@ export const AGENT_GLYPHS: Record<string, AgentGlyph> = {
     glyph: 'φ',
     role: 'surveillance',
     signalTypes: ['cluster_detected'],
-    description: 'A passive agent that logs unusual wallet clustering'
+    description: 'Surveillance agent for wallet cluster detection and monitoring'
+  },
+  'agent-liquidity': {
+    agentId: 'agent-liquidity',
+    agentName: 'Liquidity Agent',
+    glyph: '§',
+    role: 'defi_monitoring',
+    signalTypes: ['liquidity_spike_detected', 'liquidity_drain_detected', 'vesting_deviation_detected', 'high_impact_trade_detected'],
+    description: 'Monitors DeFi pools for liquidity spikes, drains, and vesting deviations'
+  },
+  'agent-scam-sentinel': {
+    agentId: 'agent-scam-sentinel',
+    agentName: 'Scam Sentinel',
+    glyph: '¤',
+    role: 'fraud_detection',
+    signalTypes: ['rug_pull_detected', 'suspicious_burn_detected', 'governance_attack_detected', 'ownership_renounced', 'suspicious_ownership_transfer'],
+    description: 'Detects rug-pulls, token supply manipulation, and fraudulent governance activities'
+  },
+  'agent-fee-analyzer': {
+    agentId: 'agent-fee-analyzer',
+    agentName: 'Fee Analyzer',
+    glyph: '¢',
+    role: 'fee_optimization',
+    signalTypes: ['fee_spike_detected', 'fee_reduction_detected', 'network_congestion_detected', 'optimal_fee_window'],
+    description: 'Monitors transaction fees and suggests optimal transaction timing for cost efficiency'
+  },
+  'agent-zkp-analyzer': {
+    agentId: 'agent-zkp-analyzer',
+    agentName: 'ZKP Agent',
+    glyph: '°',
+    role: 'privacy_analysis',
+    signalTypes: ['invalid_proof_detected', 'proof_bloating_detected', 'circuit_complexity_anomaly', 'suspicious_zkp_behavior', 'proof_farming_detected', 'privacy_violation_detected'],
+    description: 'Analyzes zero-knowledge proofs for fraudulent patterns and behavioral anomalies'
   }
 };
 
-//Lookup functions for easy glyph access
-export const getAgentGlyph = (agentId: string): string => {
-  return AGENT_GLYPHS[agentId]?.glyph || '?';
-};
+export function getAgentGlyph(agentId: string): AgentGlyph | undefined {
+  return AGENT_GLYPHS[agentId];
+}
 
-export const getAgentByGlyph = (glyph: string): AgentGlyph | undefined => {
+export function getAgentByGlyph(glyph: string): AgentGlyph | undefined {
   return Object.values(AGENT_GLYPHS).find(agent => agent.glyph === glyph);
-};
+}
 
-export const getAllGlyphs = (): string[] => {
-  return Object.values(AGENT_GLYPHS).map(agent => agent.glyph);
-};
+export function getAllGlyphs(): AgentGlyph[] {
+  return Object.values(AGENT_GLYPHS);
+}
 
-export const getAgentSignalTypes = (agentId: string): string[] => {
-  return AGENT_GLYPHS[agentId]?.signalTypes || [];
-}; 
+export function getAgentSignalTypes(agentId: string): string[] {
+  const agent = AGENT_GLYPHS[agentId];
+  return agent ? agent.signalTypes : [];
+} 
