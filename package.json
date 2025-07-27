@@ -1,5 +1,5 @@
 {
-  "name": "eremos-core",
+  "name": "eremos-swarm",
   "version": "0.0.1",
   "description": "Modular agent framework for on-chain activity monitoring.",
   "main": "index.js",

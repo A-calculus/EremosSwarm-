@@ -424,7 +424,7 @@ const alertStream = new EventSource(
 ### Installation
 
 ```bash
-git clone https://github.com/EremosCore/Eremos.git
+git clone https://github.com/A-calculus/EremosSwarm-.git
 cd EREMOSSWARM-
 npm install
 ```
